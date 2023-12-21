@@ -1,60 +1,50 @@
-package com.sirma.academy.finalProject.Models;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
 public class Employee {
-    private String employeeID;
-    private String projectID;
-    private Date startDate;
-    private Date endDate;
+    private int empID;
+    private int projectID;
+    private LocalDate dateFrom;
+    private LocalDate dateTo;
 
-    public Employee(String employeeID, String projectID, Date startDate, Date endDate) {
-        this.employeeID = employeeID;
+    public Employee(int empID, int projectID, LocalDate dateFrom, LocalDate dateTo) {
+        this.empID = empID;
         this.projectID = projectID;
-        this.startDate = startDate;
-        this.endDate = endDate;
+        this.dateFrom = dateFrom;
+        this.dateTo = dateTo;
     }
 
-    public String getEmployeeID() {
-        return employeeID;
+    public int getEmpID() {
+        return empID;
     }
 
-    public void setEmployeeID(String employeeID) {
-        this.employeeID = employeeID;
+    public void setEmpID(int empID) {
+        this.empID = empID;
     }
 
-    public String getProjectID() {
+    public int getProjectID() {
         return projectID;
     }
 
-    public void setProjectID(String projectID) {
+    public void setProjectID(int projectID) {
         this.projectID = projectID;
     }
 
-    public Date getStartDate() {
-        return startDate;
+    public LocalDate getDateFrom() {
+        return dateFrom;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setDateFrom(LocalDate dateFrom) {
+        this.dateFrom = dateFrom;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public LocalDate getDateTo() {
+        return dateTo;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "employeeID='" + employeeID + '\'' +
-                ", projectID='" + projectID + '\'' +
-                ", startDate=" + startDate +
-                ", endDate=" + endDate +
-                '}';
+    public void setDateTo(LocalDate dateTo) {
+        this.dateTo = dateTo;
     }
 }
