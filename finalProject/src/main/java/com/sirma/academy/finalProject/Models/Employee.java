@@ -1,7 +1,6 @@
+package com.sirma.academy.finalProject.Models;
 
 import java.time.LocalDate;
-import java.util.Date;
-import java.util.Objects;
 
 public class Employee {
     private int empID;
