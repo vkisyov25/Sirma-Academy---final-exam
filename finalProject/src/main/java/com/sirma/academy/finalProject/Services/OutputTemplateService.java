@@ -3,6 +3,7 @@ package com.sirma.academy.finalProject.Services;
 import com.sirma.academy.finalProject.Models.Employee;
 import com.sirma.academy.finalProject.Models.OutputTemplate;
 import com.sirma.academy.finalProject.Models.Pair;
+import com.sirma.academy.finalProject.Utils.CSVReader;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -12,8 +13,8 @@ import java.util.Map;
 
 @Service
 public class OutputTemplateService {
-    public static List<OutputTemplate> commonDaysOfEachPair(List<Employee> employees) {
-        List<Pair> pairs = PairService.findPairs(employees);
+    public  List<OutputTemplate> commonDaysOfEachPair() {
+        List<Pair> pairs = PairService.findPairs(CSVReader.readCSV("D:\\JavaPrograms\\Sirma-Academy---final-exam\\finalProject\\src\\main\\resources\\input.cvs"));
         List<OutputTemplate> outputTemplateList = new LinkedList<>();
         Map<Integer, Long> map = new HashMap<>();
         boolean isSave = false;
