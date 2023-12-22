@@ -64,4 +64,19 @@ public class OutputTemplateService {
         }
         return outputTemplateList;
     }
+
+    public OutputTemplate maxCommonDays(){
+        OutputTemplate outputTemplate;
+        List<OutputTemplate> outputTemplateList = commonDaysOfEachPair();
+        long maxCommonDays = 0;
+        int maxCommonDaysIndex = 0;
+        for (int i = 0; i < outputTemplateList.size(); i++) {
+            if(outputTemplateList.get(i).getCommonDays()>maxCommonDays){
+                maxCommonDays= outputTemplateList.get(i).getCommonDays();
+                maxCommonDaysIndex=i;
+            }
+        }
+        return outputTemplate= new OutputTemplate(outputTemplateList.get(maxCommonDaysIndex).getEmpId1(),
+                outputTemplateList.get(maxCommonDaysIndex).getEmpId2(),maxCommonDays,outputTemplateList.get(maxCommonDaysIndex).getProjectDaysMap());
+    }
 }
