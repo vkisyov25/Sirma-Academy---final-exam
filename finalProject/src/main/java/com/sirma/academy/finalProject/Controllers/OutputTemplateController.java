@@ -19,7 +19,7 @@ public class OutputTemplateController {
 
     @GetMapping("/allPairs")
     public List<OutputTemplate> allPairs() {
-        return outputTemplateService.commonDaysOfEachPair();
+        return outputTemplateService.commonDaysOfEachPairForEachProject();
     }
 
     @GetMapping("/maxCommonDays")
