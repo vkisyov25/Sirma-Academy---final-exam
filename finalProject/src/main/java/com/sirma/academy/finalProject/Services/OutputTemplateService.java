@@ -25,7 +25,7 @@ public class OutputTemplateService {
                         int empId1 = employees.get(i).getEmpID();
                         int empId2 = employees.get(j).getEmpID();
                         long commonDays = calculateCommonDays(i, j, employees);
-                        if(commonDays!=0){
+                        if (commonDays != 0) {
                             Pair pair = new Pair(projectId, empId1, empId2, commonDays);
                             pairs.add(pair);
                         }
@@ -63,7 +63,8 @@ public class OutputTemplateService {
 
         return commonDays;
     }
-    public  List<OutputTemplate> commonDaysOfEachPairForEachProject() {
+
+    public List<OutputTemplate> commonDaysOfEachPairForEachProject() {
         List<Pair> pairs = findPairs(CSVReader.readCSV("D:\\JavaPrograms\\Sirma-Academy---final-exam\\finalProject\\src\\main\\resources\\input.cvs"));
         List<OutputTemplate> outputTemplateList = new LinkedList<>();
         Map<Integer, Long> map = new HashMap<>();
@@ -115,18 +116,18 @@ public class OutputTemplateService {
         return outputTemplateList;
     }
 
-    public OutputTemplate maxCommonDays(){
+    public OutputTemplate maxCommonDays() {
         OutputTemplate outputTemplate;
         List<OutputTemplate> outputTemplateList = commonDaysOfEachPairForEachProject();
         long maxCommonDays = 0;
         int maxCommonDaysIndex = 0;
         for (int i = 0; i < outputTemplateList.size(); i++) {
-            if(outputTemplateList.get(i).getCommonDays()>maxCommonDays){
-                maxCommonDays= outputTemplateList.get(i).getCommonDays();
-                maxCommonDaysIndex=i;
+            if (outputTemplateList.get(i).getCommonDays() > maxCommonDays) {
+                maxCommonDays = outputTemplateList.get(i).getCommonDays();
+                maxCommonDaysIndex = i;
             }
         }
-        return outputTemplate= new OutputTemplate(outputTemplateList.get(maxCommonDaysIndex).getEmpId1(),
-                outputTemplateList.get(maxCommonDaysIndex).getEmpId2(),maxCommonDays,outputTemplateList.get(maxCommonDaysIndex).getProjectDaysMap());
+        return outputTemplate = new OutputTemplate(outputTemplateList.get(maxCommonDaysIndex).getEmpId1(),
+                outputTemplateList.get(maxCommonDaysIndex).getEmpId2(), maxCommonDays, outputTemplateList.get(maxCommonDaysIndex).getProjectDaysMap());
     }
 }

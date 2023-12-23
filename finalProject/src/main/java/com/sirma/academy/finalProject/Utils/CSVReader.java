@@ -1,4 +1,5 @@
 package com.sirma.academy.finalProject.Utils;
+
 import com.sirma.academy.finalProject.Models.Employee;
 
 import java.io.BufferedReader;
@@ -16,16 +17,16 @@ public class CSVReader {
 
         try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
             String line = in.readLine();
-            while (line != null){
+            while (line != null) {
                 line += ", ";
                 String[] arr = line.split(", ");
                 int empID = Integer.parseInt(arr[0]);
                 int projectID = Integer.parseInt(arr[1]);
                 LocalDate dateFrom = parseDate(arr[2]);
                 LocalDate dateTo;
-                if(arr[3].equals("NULL")){
+                if (arr[3].equals("NULL")) {
                     dateTo = parseDate(String.valueOf(LocalDate.now()));
-                }else {
+                } else {
                     dateTo = parseDate(arr[3]);
                 }
                 employees.add(new Employee(empID, projectID, dateFrom, dateTo));

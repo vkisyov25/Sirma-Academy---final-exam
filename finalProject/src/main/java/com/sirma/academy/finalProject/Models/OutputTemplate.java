@@ -6,8 +6,8 @@ import java.util.Map;
 
 @Getter
 public class OutputTemplate {
-    private  int empId1;
-    private  int empId2;
+    private int empId1;
+    private int empId2;
     private long commonDays;
     private Map<Integer, Long> projectDaysMap;
 
@@ -17,8 +17,9 @@ public class OutputTemplate {
         this.commonDays = commonDays;
         this.projectDaysMap = projectDaysMap;
     }
+
     @Override
     public String toString() {
-        return empId1+","+ empId2+","+ commonDays +"\n"+projectDaysMap;
+        return empId1 + "," + empId2 + "," + commonDays + "\n" + projectDaysMap;
     }
 }
