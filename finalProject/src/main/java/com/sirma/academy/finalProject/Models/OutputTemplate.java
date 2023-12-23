@@ -17,4 +17,8 @@ public class OutputTemplate {
         this.commonDays = commonDays;
         this.projectDaysMap = projectDaysMap;
     }
+    @Override
+    public String toString() {
+        return empId1+","+ empId2+","+ commonDays +"\n"+projectDaysMap;
+    }
 }
