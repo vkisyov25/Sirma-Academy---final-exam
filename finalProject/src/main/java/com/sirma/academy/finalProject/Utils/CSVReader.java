@@ -13,6 +13,11 @@ import java.util.List;
 public class CSVReader {
 
     public static List<Employee> readCSV(String filePath) {
+        //Validation
+        if (filePath == null || filePath.isEmpty()) {
+            throw new IllegalArgumentException("The file path cannot be null or empty.");
+        }
+
         List<Employee> employees = new ArrayList<>();
 
         try (BufferedReader in = new BufferedReader(new FileReader(filePath))) {
@@ -20,8 +25,17 @@ public class CSVReader {
             while (line != null) {
                 line += ", ";
                 String[] arr = line.split(", ");
-                int empID = Integer.parseInt(arr[0]);
-                int projectID = Integer.parseInt(arr[1]);
+                //Validation
+                int empID;
+                int projectID;
+                try {
+                    empID = Integer.parseInt(arr[0]);
+                    projectID = Integer.parseInt(arr[1]);
+                } catch (NumberFormatException exception) {
+                    exception.printStackTrace();
+                    line = in.readLine();
+                    continue;
+                }
                 LocalDate dateFrom = parseDate(arr[2]);
                 LocalDate dateTo;
                 if (arr[3].equals("NULL")) {
@@ -29,10 +43,16 @@ public class CSVReader {
                 } else {
                     dateTo = parseDate(arr[3]);
                 }
+                //Validation
+                if (dateFrom == null || dateTo == null) {
+                    throw new IllegalArgumentException("Date parsing error.");
+                }
+
                 employees.add(new Employee(empID, projectID, dateFrom, dateTo));
 
                 line = in.readLine();
             }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

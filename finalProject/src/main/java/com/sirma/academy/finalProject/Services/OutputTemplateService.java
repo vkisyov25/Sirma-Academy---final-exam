@@ -16,6 +16,11 @@ import java.util.Map;
 @Service
 public class OutputTemplateService {
     public static List<Pair> findPairs(List<Employee> employees) {
+        //Validation
+        if (employees == null || employees.size() < 2) {
+            throw new IllegalArgumentException("The employee list must contain at least two employees.");
+        }
+
         List<Pair> pairs = new LinkedList<>();
         for (int i = 0; i < employees.size(); i++) {
             for (int j = i + 1; j < employees.size(); j++) {
@@ -29,6 +34,7 @@ public class OutputTemplateService {
                             Pair pair = new Pair(projectId, empId1, empId2, commonDays);
                             pairs.add(pair);
                         }
+
                     }
 
                 }
@@ -36,6 +42,7 @@ public class OutputTemplateService {
             }
 
         }
+
         return pairs;
     }
 
@@ -66,6 +73,11 @@ public class OutputTemplateService {
 
     public List<OutputTemplate> commonDaysOfEachPairForEachProject() {
         List<Pair> pairs = findPairs(CSVReader.readCSV("D:\\JavaPrograms\\Sirma-Academy---final-exam\\finalProject\\src\\main\\resources\\input.cvs"));
+        //Validation
+        if (pairs == null || pairs.isEmpty()) {
+            throw new IllegalArgumentException("No data available.");
+        }
+
         List<OutputTemplate> outputTemplateList = new LinkedList<>();
         Map<Integer, Long> map = new HashMap<>();
         boolean isSave = false;
@@ -86,6 +98,7 @@ public class OutputTemplateService {
                     pairs.remove(j);
                     j -= 2;
                 }
+
             }
 
             if (!isSave) {
@@ -101,6 +114,7 @@ public class OutputTemplateService {
                 i--;
                 isSave = false;
             }
+
             map = new HashMap<>();//to reset creating a new HashMap
 
             if (pairs.size() == 1) {
@@ -119,6 +133,11 @@ public class OutputTemplateService {
     public OutputTemplate maxCommonDays() {
         OutputTemplate outputTemplate;
         List<OutputTemplate> outputTemplateList = commonDaysOfEachPairForEachProject();
+        //Validation
+        if (outputTemplateList == null || outputTemplateList.isEmpty()) {
+            throw new IllegalArgumentException("No data available");
+        }
+
         long maxCommonDays = 0;
         int maxCommonDaysIndex = 0;
         for (int i = 0; i < outputTemplateList.size(); i++) {
