@@ -29,8 +29,8 @@ In the Controllers package, the OutputTemplateController serves as a controller 
 Endpoints:
 - @GetMapping("/allPairs"): Displays all employee pairs.
 - @GetMapping("/maxCommonDays"): Displays the pair with the most common workdays.
-The Controllers package also contained `EmployeeControllers` for CRUD for Employees.
-Endpoints:
+#The Controllers package also contained `EmployeeControllers` for CRUD for Employees.
+ Endpoints:
 - @GetMapping("/AllEmployees"): Display all employees from the database.
 - @PostMapping("/create"): Adding employee in the database
 - @DeleteMapping("/delete/{id}"): Delete the employee with this id. First checking if it exists.
