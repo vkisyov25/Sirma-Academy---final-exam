@@ -82,6 +82,7 @@ public class OutputTemplateService {
         Map<Integer, Long> map = new HashMap<>();
         boolean isSave = false;
         for (int i = 0; i < pairs.size(); i++) {
+            OutputTemplate outputTemplate = null;
             for (int j = i + 1; j < pairs.size(); j++) {
                 long allDays;
                 // (1,2) = (2,1)
@@ -92,7 +93,7 @@ public class OutputTemplateService {
                     int empId2 = pairs.get(i).getEmpId2();
                     allDays += pairs.get(j).getCommonDays();
                     map.put(pairs.get(j).getProjectId(), pairs.get(j).getCommonDays());
-                    OutputTemplate outputTemplate = new OutputTemplate(empId1, empId2, allDays, map);
+                    outputTemplate = new OutputTemplate(empId1, empId2, allDays, map);
                     outputTemplateList.add(outputTemplate);
                     isSave = true;
                     pairs.remove(j);
@@ -100,13 +101,16 @@ public class OutputTemplateService {
                 }
 
             }
+            if(isSave){
+                outputTemplateList.add(outputTemplate);
+            }
 
             if (!isSave) {
                 int empId1 = pairs.get(i).getEmpId1();
                 int empId2 = pairs.get(i).getEmpId2();
                 long commonDays = pairs.get(i).getCommonDays();
                 map.put(pairs.get(i).getProjectId(), commonDays);
-                OutputTemplate outputTemplate = new OutputTemplate(empId1, empId2, commonDays, map);
+                outputTemplate = new OutputTemplate(empId1, empId2, commonDays, map);
                 outputTemplateList.add(outputTemplate);
                 pairs.remove(i);
             } else {
@@ -121,7 +125,7 @@ public class OutputTemplateService {
                 int empId1 = pairs.get(0).getEmpId1();
                 int empId2 = pairs.get(0).getEmpId2();
                 map.put(pairs.get(i).getProjectId(), pairs.get(0).getCommonDays());
-                OutputTemplate outputTemplate = new OutputTemplate(empId1, empId2, pairs.get(0).getCommonDays(), map);
+                outputTemplate = new OutputTemplate(empId1, empId2, pairs.get(0).getCommonDays(), map);
                 outputTemplateList.add(outputTemplate);
                 pairs.remove(i);
             }
@@ -146,7 +150,6 @@ public class OutputTemplateService {
                 maxCommonDaysIndex = i;
             }
         }
-        return outputTemplate = new OutputTemplate(outputTemplateList.get(maxCommonDaysIndex).getEmpId1(),
-                outputTemplateList.get(maxCommonDaysIndex).getEmpId2(), maxCommonDays, outputTemplateList.get(maxCommonDaysIndex).getProjectDaysMap());
+        return outputTemplate = new OutputTemplate(outputTemplateList.get(maxCommonDaysIndex).getEmpId1(), outputTemplateList.get(maxCommonDaysIndex).getEmpId2(), maxCommonDays, outputTemplateList.get(maxCommonDaysIndex).getProjectDaysMap());
     }
 }
