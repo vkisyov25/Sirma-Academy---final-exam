@@ -4,6 +4,7 @@ import com.sirma.academy.finalProject.Models.Employee;
 import com.sirma.academy.finalProject.Models.OutputTemplate;
 import com.sirma.academy.finalProject.Models.Pair;
 import com.sirma.academy.finalProject.Utils.CSVReader;
+import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -30,10 +31,8 @@ public class OutputTemplateService {
                         int empId1 = employees.get(i).getEmpID();
                         int empId2 = employees.get(j).getEmpID();
                         long commonDays = calculateCommonDays(i, j, employees);
-                        if (commonDays != 0) {
-                            Pair pair = new Pair(projectId, empId1, empId2, commonDays);
-                            pairs.add(pair);
-                        }
+                        Pair pair = new Pair(projectId, empId1, empId2, commonDays);
+                        pairs.add(pair);
 
                     }
 
@@ -46,6 +45,7 @@ public class OutputTemplateService {
         return pairs;
     }
 
+    @SneakyThrows
     public static long calculateCommonDays(int i, int j, List<Employee> employees) {
 
         LocalDate startDate;
@@ -66,6 +66,10 @@ public class OutputTemplateService {
 
         if (startDate.isBefore(endDate)) {
             commonDays = ChronoUnit.DAYS.between(startDate, endDate);
+        }
+
+        if(commonDays<=0){
+            throw new Exception("Employees don't have common work days");
         }
 
         return commonDays;
@@ -97,7 +101,7 @@ public class OutputTemplateService {
                     outputTemplateList.add(outputTemplate);
                     isSave = true;
                     pairs.remove(j);
-                    j -= 2;
+                    j -= 1;
                 }
 
             }
