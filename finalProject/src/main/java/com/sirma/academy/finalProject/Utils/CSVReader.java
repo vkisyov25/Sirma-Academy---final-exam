@@ -25,6 +25,13 @@ public class CSVReader {
             while (line != null) {
                 line += ", ";
                 String[] arr = line.split(", ");
+
+                if(arr.length !=4){
+                    line = in.readLine();
+                    continue;
+                }
+
+
                 //Validation
                 int empID;
                 int projectID;
@@ -36,6 +43,7 @@ public class CSVReader {
                     line = in.readLine();
                     continue;
                 }
+
                 LocalDate dateFrom = parseDate(arr[2]);
                 LocalDate dateTo;
                 if (arr[3].equals("NULL")) {
