@@ -68,7 +68,7 @@ public class CSVReader {
         return employees;
     }
 
-    private static LocalDate parseDate(String date) {
+    public static LocalDate parseDate(String date) {
         DateTimeFormatter[] formatters = {
                 DateTimeFormatter.ofPattern("yyyy-MM-dd"),
                 DateTimeFormatter.ofPattern("dd/MM/yyyy"),
