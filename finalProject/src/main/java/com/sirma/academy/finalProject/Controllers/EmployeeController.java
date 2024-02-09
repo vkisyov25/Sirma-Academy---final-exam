@@ -57,4 +57,10 @@ public class EmployeeController {
             return new ResponseEntity<>("Employee not found", HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/load-csv")
+    public String loadCsvData(@RequestParam String filePath) {
+        employeeService.CsvDataToDatabase(filePath);
+        return "Data loaded successfully";
+    }
 }
