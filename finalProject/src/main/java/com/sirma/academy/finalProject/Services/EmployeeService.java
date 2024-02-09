@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import static com.sirma.academy.finalProject.Utils.CSVReader.readCSV;
 
 @Service
 public class EmployeeService {
@@ -36,5 +37,24 @@ public class EmployeeService {
 
     public Optional<Employee> getEmployeeById(Long id) {
         return  employeeRepository.findById(id);
+    }
+
+    public void CsvDataToDatabase(String filePath) {
+        List<Employee> employeeList = readCSV(filePath);
+        for (int i = 0; i < employeeList.size(); i++) {
+            Employee employee = new Employee(employeeList.get(i).getEmpID(),employeeList.get(i).getProjectID(),employeeList.get(i).getDateTo(),employeeList.get(i).getDateFrom());
+            boolean employeeExists = employeeRepository.findByEmpIDAndProjectIDAndDateToAndDateFrom(
+                    employee.getEmpID(),
+                    employee.getProjectID(),
+                    employee.getDateTo(),
+                    employee.getDateFrom()
+            ).isPresent();
+
+            if (!employeeExists) {
+                employeeRepository.save(employee);
+            }
+        }
+
+
     }
 }
