@@ -22,9 +22,9 @@ public class Employee {
     @NonNull
     private int projectID;
     @NonNull
-    private LocalDate dateFrom;
-    @NonNull
     private LocalDate dateTo;
+    @NonNull
+    private LocalDate dateFrom;
 
     public Employee(int empID, int projectID, LocalDate dateFrom, LocalDate dateTo) {
         this.empID = empID;
