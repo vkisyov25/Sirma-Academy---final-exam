@@ -25,14 +25,15 @@ That was the reason I made OutputTemplate model so I can keep in map how many co
 - `maxCommonDays`: Function that finds the pair with the most days in common.
 
 The `Services` package is also contained `EmployeeService` class in which is the logic for CRUD for Employees.
-- `CsvDataToDatabase`: Тhis function serves to fill a database from the csv file.
+- `CsvDataToDatabase`: Тhis function serves to fill a database from the csv file. Duplicate information is not allowed in the database. If we add information in the csv file and it is not in the database, it is added. If we want to delete something from the database  @DeleteMapping("/delete/{id}") is used.
+
 ### 4. Controllers Package
 In the Controllers package, the OutputTemplateController serves as a controller for visualizing all pairs and the pair with the most common workdays.
 Endpoints:
 - @GetMapping("/allPairs"): Displays all employee pairs.
 - @GetMapping("/maxCommonDays"): Displays the pair with the most common workdays.
-  
-#The Controllers package also contained `EmployeeControllers` for CRUD for Employees.
+    
+The Controllers package also contained `EmployeeControllers` for CRUD for Employees.
  Endpoints:
 - @GetMapping("/AllEmployees"): Display all employees from the database.
 - @PostMapping("/create"): Adding employee in the database
