@@ -23,7 +23,8 @@ The list looks like this:
 ![Изображение на листа](https://github.com/vkisyov25/Sirma-Academy---final-exam/blob/main/logo2.png)
 That was the reason I made OutputTemplate model so I can keep in map how many common days they had in each project. This is the template of output information in the task. That’s why I named the model and the service like that – OutputTemplate.
 - `maxCommonDays`: Function that finds the pair with the most days in common.
-The `Services` package is also contained `EmployeeService` class in which is the logic for CRUD for Employees
+The `Services` package is also contained `EmployeeService` class in which is the logic for CRUD for Employees.
+- `CsvDataToDatabase`: Тhis function serves to fill a database from the csv file.
 ### 4. Controllers Package
 In the Controllers package, the OutputTemplateController serves as a controller for visualizing all pairs and the pair with the most common workdays.
 Endpoints:
@@ -37,5 +38,7 @@ Endpoints:
   ![Изображение](https://github.com/vkisyov25/Sirma-Academy---final-exam/blob/main/delete.png)
 - @PutMapping("/update/{id}"): Update the project id of the employees with this id .First checking if employees exists.
   ![Изображение](https://github.com/vkisyov25/Sirma-Academy---final-exam/blob/main/update.png)
+- @@PostMapping("/load-csv"):Give it the path of the csv file.
+  ![Изображение](https://github.com/vkisyov25/Sirma-Academy---final-exam/blob/main/load-csv.png)
 ### 5. Repositories Package
 The `Repositories` package contained `EmployeeRepository` interface that extend interface `JpaRepository`. The purpose of this is to make CRUD for Employess
